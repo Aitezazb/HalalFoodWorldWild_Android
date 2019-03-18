@@ -160,7 +160,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
-                        Toast.makeText(MainActivity.this,"error in response",Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this,"error in response of map",Toast.LENGTH_LONG).show();
                     }
                 });
         stringRequest.setRetryPolicy(new RetryPolicy() {
