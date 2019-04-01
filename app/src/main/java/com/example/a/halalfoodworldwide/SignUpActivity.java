@@ -15,6 +15,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.a.halalfoodworldwide.Helper.APIUrl;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -91,13 +92,13 @@ public class SignUpActivity extends AppCompatActivity {
 
     private boolean isPasswordValid(String password){
         boolean s = password.matches(PASSWORD_PATTERN);
-        if(!s)Toast.makeText(SignUpActivity.this,"wrong paass",Toast.LENGTH_LONG).show();
+        if(!s)Toast.makeText(SignUpActivity.this,"wrong password",Toast.LENGTH_LONG).show();
         return s;
     }
 
     private boolean isConfirmPasswordMatch(String confirmPassword){
         if (password.equals(confirmPassword)) {
-            Toast.makeText(SignUpActivity.this,"wrong comfirm",Toast.LENGTH_LONG).show();
+            Toast.makeText(SignUpActivity.this,"wrong confirm",Toast.LENGTH_LONG).show();
             return true;
         }
         else return false;
@@ -105,7 +106,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     //Api request
     private void sendRequest(){
-        String url = "http://192.168.1.5/api/account/Register?email="+email+"&password="+password+
+        String url = APIUrl.Url + "/api/account/Register?email="+email+"&password="+password+
                 "&confirmPassword="+confirmPassword;
         StringRequest stringRequest = new StringRequest(Request.Method.POST,url,
                 new Response.Listener<String>() {

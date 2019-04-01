@@ -27,6 +27,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.a.halalfoodworldwide.Helper.APIUrl;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -147,8 +148,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
     //Api request
     private void sendRequest(){
-        String url = "http://192.168.1.6/api/Restaurant?cityName=Lahore&countyName=Pakistan";
-        //String url = "http://192.168.1.4/api/RestaurantModel?cityName="+cityName+"&countyName="+countryName;
+        String url = APIUrl.Url + "/api/Restaurant?cityName=Lahore&countyName=Pakistan";
         StringRequest stringRequest = new StringRequest(url,
                 new Response.Listener<String>() {
                     @Override

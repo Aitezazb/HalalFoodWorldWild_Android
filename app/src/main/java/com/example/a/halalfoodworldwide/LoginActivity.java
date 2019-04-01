@@ -1,6 +1,7 @@
 package com.example.a.halalfoodworldwide;
 
 import android.content.Intent;
+import android.media.session.MediaSession;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,6 +18,10 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.a.halalfoodworldwide.Helper.APIUrl;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -82,14 +87,23 @@ public class LoginActivity extends AppCompatActivity {
 
     //Api request
     private void sendRequest(){
-        String url = "http://192.168.1.5/token";
-        //String RequestBody = "username=aitezazbilal95@gmail.com&password=Abc@123&grant_type=password";
+        String url = APIUrl.Url + "/token";
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST,url
                 , new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(LoginActivity.this,"error in response",Toast.LENGTH_LONG).show();
+                        Toast.makeText(LoginActivity.this,response,Toast.LENGTH_LONG).show();
+
+                        try {
+                            SetToken(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
+                        startActivity(mainActivity);
+                        finish();
                     }
                 },
                 new Response.ErrorListener() {
@@ -140,4 +154,13 @@ public class LoginActivity extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
+
+
+    private void SetToken(String response) throws JSONException {
+        JSONObject tokenResponse = new JSONObject(response);
+        String token = tokenResponse.getString("access_token");
+
+        _User.getInstance().setToken(token);
+    }
+
 }

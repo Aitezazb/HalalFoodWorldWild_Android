@@ -17,6 +17,7 @@ import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.a.halalfoodworldwide.Helper.APIUrl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -93,7 +94,7 @@ public class RestaurantDetailActivity extends AppCompatActivity {
 
     //Api request
     private void sendRequest(){
-        String url = "http://192.168.1.4/api/Restaurant?idForMenu=7";
+        String url = APIUrl.Url+ "/api/Restaurant/7/MenuItem";
         StringRequest stringRequest = new StringRequest(url,
                 new Response.Listener<String>() {
                     @Override

@@ -74,7 +74,7 @@ public class ParseJSON {
             JSONObject jsonObject = new JSONObject(json);
 
             // Getting Results array list from json
-            results = jsonObject.getJSONArray("MenuItems");
+            results = jsonObject.getJSONArray("menuItems");
 
             MenuItemModel menuItem = new MenuItemModel();
 
@@ -82,7 +82,7 @@ public class ParseJSON {
             for(int i =0 ;i<results.length();i++){
                 RestaurantModel restaurantModel = new RestaurantModel();
                 JSONObject Item = results.getJSONObject(i);
-                menuItem.MenuItems.put(Item.getString("ItemName"),Item.getString("ItemPrice"));
+                menuItem.MenuItems.put(Item.getString("itemName"),Item.getString("itemPrice"));
             }
             return menuItem;
 

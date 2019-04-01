@@ -1,25 +1,11 @@
 package com.example.a.halalfoodworldwide;
 
 public class _User {
+    private static String Token;
 
-    private static String Email;
-    private static String Password;
+    public String getToken() {return Token;}
 
-    public String getEamil() {
-        return Email;
-    }
-
-    public String getPassword() {
-        return Password;
-    }
-
-    public void setEmail(String email) {
-        Email = email;
-    }
-
-    public void setPassword(String password) {
-        Password = password;
-    }
+    public void setToken(String token){Token = token;}
 
     private static final _User ourInstance = new _User();
 
@@ -28,11 +14,10 @@ public class _User {
     }
 
     private _User() {
-        Email = null;
-        Password = null;
+        Token = null;
     }
 
     public Boolean IsEmpty(){
-        return Email == null && Password == null ? true : false;
+        return Token == null ? true : false;
     }
 }
