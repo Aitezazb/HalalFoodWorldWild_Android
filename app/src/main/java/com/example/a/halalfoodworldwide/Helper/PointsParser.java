@@ -1,4 +1,4 @@
-package com.example.a.halalfoodworldwide;
+package com.example.a.halalfoodworldwide.Helper;
 
 import android.content.Context;
 import android.graphics.Color;
