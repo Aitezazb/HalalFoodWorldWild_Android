@@ -93,17 +93,16 @@ public class LoginActivity extends AppCompatActivity {
                 , new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(LoginActivity.this,response,Toast.LENGTH_LONG).show();
+                        //Toast.makeText(LoginActivity.this,response,Toast.LENGTH_LONG).show();
 
                         try {
                             SetToken(response);
+                            Intent mainActivityIntent = new Intent(LoginActivity.this,MainActivity.class);
+                            startActivity(mainActivityIntent);
+                            finish();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-                        Intent mainActivity = new Intent(getApplicationContext(),MainActivity.class);
-                        startActivity(mainActivity);
-                        finish();
                     }
                 },
                 new Response.ErrorListener() {
@@ -159,8 +158,9 @@ public class LoginActivity extends AppCompatActivity {
     private void SetToken(String response) throws JSONException {
         JSONObject tokenResponse = new JSONObject(response);
         String token = tokenResponse.getString("access_token");
-
+        String email = tokenResponse.getString("userName");
         _User.getInstance().setToken(token);
+        _User.getInstance().setEmail(email);
     }
 
 }

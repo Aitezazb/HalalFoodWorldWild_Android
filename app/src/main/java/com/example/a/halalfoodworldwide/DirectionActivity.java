@@ -1,10 +1,12 @@
 package com.example.a.halalfoodworldwide;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -23,6 +25,8 @@ public class DirectionActivity extends FragmentActivity implements OnMapReadyCal
     private double centerLat,centerLng;
 
     private Button reach;
+    private Dialog userLog_Popup;
+
 
     private Polyline currentPolyline;
 
@@ -30,7 +34,7 @@ public class DirectionActivity extends FragmentActivity implements OnMapReadyCal
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_direction);
-
+        userLog_Popup = new Dialog(this);
         restaurantModel = new RestaurantModel();
         final Intent intent = getIntent();
 
@@ -50,10 +54,16 @@ public class DirectionActivity extends FragmentActivity implements OnMapReadyCal
         reach.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(_User.getInstance().IsEmpty()){
+                    ShowUserLogPopUp();
+                }
+                else{
                 Intent rateActivity = new Intent(DirectionActivity.this, RateRestaurantActivity.class);
+                rateActivity.putExtra("restaurantName",restaurantModel.name);
                 rateActivity.putExtra("restaurantId",restaurantModel.place_id);
                 startActivity(rateActivity);
                 finish();
+                }
             }
         });
 
@@ -102,4 +112,43 @@ public class DirectionActivity extends FragmentActivity implements OnMapReadyCal
             currentPolyline.remove();
         currentPolyline = mMap.addPolyline((PolylineOptions) values[0]);
     }
+
+    private void ShowUserLogPopUp(){
+        userLog_Popup.setContentView(R.layout.user_log_popup);
+        Button Login = (Button) userLog_Popup.findViewById(R.id.login);
+        Button SignUp = (Button) userLog_Popup.findViewById(R.id.signup);
+        TextView closePopup = (TextView) userLog_Popup.findViewById(R.id.closepopup);
+        closePopup.setOnClickListener(closeBtnListenser);
+        Login.setOnClickListener(LoginBanListener);
+        SignUp.setOnClickListener(SignUpBtnListener);
+        userLog_Popup.show();
+    }
+
+    //close user log pop up event handler
+    private TextView.OnClickListener closeBtnListenser = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            userLog_Popup.dismiss();
+        }
+    };
+
+    //Login button event handler
+    private Button.OnClickListener LoginBanListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent loginIntent = new Intent(DirectionActivity.this,LoginActivity.class);
+            startActivity(loginIntent);
+            finish();
+        }
+    };
+
+    //Sign up button event handler
+    private Button.OnClickListener SignUpBtnListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent signUpIntent = new Intent(DirectionActivity.this,SignUpActivity.class);
+            startActivity(signUpIntent);
+            finish();
+        }
+    };
 }

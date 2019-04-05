@@ -14,7 +14,6 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -28,6 +27,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.a.halalfoodworldwide.Helper.APIUrl;
+import com.example.a.halalfoodworldwide.Helper.ReturnActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -233,8 +233,9 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                 case R.id.nav_home:{
                     break;
                 }
-                case R.id.nav_favourite:{
+                case R.id.nav_Ratings:{
                     if(_User.getInstance().IsEmpty()) {ShowUserLogPopUp();
+                        //ReturnActivity.setReturnActivityName();
                         return false;
                     }else{
 
@@ -269,14 +270,14 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         Button Login = (Button) userLog_Popup.findViewById(R.id.login);
         Button SignUp = (Button) userLog_Popup.findViewById(R.id.signup);
         TextView closePopup = (TextView) userLog_Popup.findViewById(R.id.closepopup);
-        closePopup.setOnClickListener(closeBtnListenser);
+        closePopup.setOnClickListener(closeBtnListener);
         Login.setOnClickListener(LoginBanListener);
         SignUp.setOnClickListener(SignUpBtnListener);
         userLog_Popup.show();
     }
 
     //close user log pop up event handler
-    private TextView.OnClickListener closeBtnListenser = new View.OnClickListener() {
+    private TextView.OnClickListener closeBtnListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             userLog_Popup.dismiss();
