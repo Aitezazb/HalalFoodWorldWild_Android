@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.a.halalfoodworldwide.Helper.APIUrl;
+import com.example.a.halalfoodworldwide.Models._User;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -119,7 +120,7 @@ public class RateRestaurantActivity extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String,String> headers = new HashMap<String, String>();
-                String s =_User.getInstance().getToken();
+                String s = _User.getInstance().getToken();
                 headers.put("Authorization", "Bearer " + _User.getInstance().getToken());
                 return headers;
             }

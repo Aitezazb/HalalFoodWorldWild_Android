@@ -1,4 +1,4 @@
-package com.example.a.halalfoodworldwide;
+package com.example.a.halalfoodworldwide.Models;
 
 public class _User {
     private static String Token;
