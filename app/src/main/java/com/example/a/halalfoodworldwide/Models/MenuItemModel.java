@@ -1,11 +1,11 @@
-package com.example.a.halalfoodworldwide;
+package com.example.a.halalfoodworldwide.Models;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MenuItemModel {
 
-    HashMap<String,String> MenuItems;
+    public HashMap<String,String> MenuItems;
 
     public MenuItemModel(){
         MenuItems = new HashMap<>();

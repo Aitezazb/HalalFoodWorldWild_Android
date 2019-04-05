@@ -1,4 +1,4 @@
-package com.example.a.halalfoodworldwide;
+package com.example.a.halalfoodworldwide.Helper;
 
 import com.google.android.gms.maps.model.LatLng;
 

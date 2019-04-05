@@ -1,6 +1,4 @@
-package com.example.a.halalfoodworldwide;
-
-import com.example.a.halalfoodworldwide.Models.RestaurantModel;
+package com.example.a.halalfoodworldwide.Models;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,7 +29,7 @@ public class ParseJSON {
     public ParseJSON(String json){
         this.json = json;
     }
-    protected ArrayList<RestaurantModel> parseJSON_Restaurant(){
+    public ArrayList<RestaurantModel> parseJSON_Restaurant(){
         JSONObject jsonObject=null;
         try {
             //Getting all values of Api result
@@ -68,7 +66,7 @@ public class ParseJSON {
         return null;
     }
 
-    protected MenuItemModel parseJSON_MenuItem(){
+    public MenuItemModel parseJSON_MenuItem(){
         try {
             //Getting all values of Api result
             JSONObject jsonObject = new JSONObject(json);

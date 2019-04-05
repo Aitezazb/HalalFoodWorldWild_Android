@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.a.halalfoodworldwide.Helper.FetchURL;
+import com.example.a.halalfoodworldwide.Helper.TaskLoadedCallback;
 import com.example.a.halalfoodworldwide.Models.RestaurantModel;
 import com.example.a.halalfoodworldwide.Models._User;
 import com.google.android.gms.maps.CameraUpdateFactory;
