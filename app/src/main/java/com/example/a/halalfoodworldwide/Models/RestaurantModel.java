@@ -1,4 +1,4 @@
-package com.example.a.halalfoodworldwide;
+package com.example.a.halalfoodworldwide.Models;
 
 import java.io.Serializable;
 

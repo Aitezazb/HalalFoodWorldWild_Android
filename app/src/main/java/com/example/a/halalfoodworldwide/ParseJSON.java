@@ -1,6 +1,6 @@
 package com.example.a.halalfoodworldwide;
-import android.view.Menu;
-import android.widget.SimpleCursorAdapter;
+
+import com.example.a.halalfoodworldwide.Models.RestaurantModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
