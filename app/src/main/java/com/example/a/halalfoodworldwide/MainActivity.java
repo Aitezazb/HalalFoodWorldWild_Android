@@ -150,7 +150,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
 
     //Api request
     private void sendRequest(){
-        String url = APIUrl.Url + "/api/Restaurant?cityName=Lahore&countyName=Pakistan";
+        String url = "";//APIUrl.Url + "/api/Restaurant?cityName=Lahore&countyName=Pakistan"; // <- uncomment this
         StringRequest stringRequest = new StringRequest(url,
                 new Response.Listener<String>() {
                     @Override
@@ -240,8 +240,11 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
                         //ReturnActivity.setReturnActivityName();
                         return false;
                     }else{
-
+                        Intent userAllRatingIntent = new Intent(MainActivity.this,UserAllRatingActivity.class);
+                        startActivity(userAllRatingIntent);
+                        finish();
                     }
+
                     break;
                 }
                 case R.id.nav_tag:{
