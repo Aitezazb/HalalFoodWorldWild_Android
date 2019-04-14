@@ -1,5 +1,7 @@
 package com.example.a.halalfoodworldwide.Models;
 
+import com.example.a.halalfoodworldwide.Helper.RatingItemAdapter;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -83,6 +85,35 @@ public class ParseJSON {
                 menuItem.MenuItems.put(Item.getString("itemName"),Item.getString("itemPrice"));
             }
             return menuItem;
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public ArrayList<RatingListViewModel> parseJSON_Rating(){
+        JSONObject jsonObject=null;
+        try {
+
+            ArrayList<RatingListViewModel> ratingListViewModels = new ArrayList<>();
+
+            //Getting all values of Api result
+            jsonObject = new JSONObject(json);
+
+            JSONArray ratingsModel = jsonObject.getJSONArray("ratingsModel");
+
+            for (int i=0;i<ratingsModel.length();i++){
+                RatingListViewModel ratingListViewModel = new RatingListViewModel();
+                JSONObject Item = ratingsModel.getJSONObject(i);
+                ratingListViewModel.setId(Item.getString("id"));
+                ratingListViewModel.setRestaurantName(Item.getString("restaurantName"));
+                ratingListViewModel.setStar(Item.getString("star"));
+                ratingListViewModel.setComment(Item.getString("comment"));
+                ratingListViewModels.add(ratingListViewModel);
+            }
+
+            return ratingListViewModels;
 
         } catch (JSONException e) {
             e.printStackTrace();
