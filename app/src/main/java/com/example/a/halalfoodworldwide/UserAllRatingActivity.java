@@ -38,8 +38,6 @@ public class UserAllRatingActivity extends AppCompatActivity {
     //Model
     private ArrayList<RatingListViewModel> ratingListViewModels;
 
-    String restaurantName[] = {"My burger","Burger king","fucking burger"};
-    String rating[] = {"1.2","1.1","3.3"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
